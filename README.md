@@ -17,20 +17,4 @@ main.jsの５行目にウェブフックのURLをいれてください。
 ## 軌道
 ```bash
 screen node main.js
-```main.jsの５行目にウェブフックのURLをいれてください。
-## 軌道
-```bash
-screen node main.js
-```main.jsの５行目にウェブフックのURLをいれてください。
-## 軌道
-```bash
-screen node main.js
-```main.jsの５行目にウェブフックのURLをいれてください。
-## 軌道
-```bash
-screen node main.js
-```main.jsの５行目にウェブフックのURLをいれてください。
-## 軌道
-```bash
-screen node main.js
 ```
