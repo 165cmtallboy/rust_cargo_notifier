@@ -2,6 +2,7 @@
   "name": "cargo-notifier",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@liamcottle/rustplus.js": "^2.2.0"
+    "@fabricio-191/valve-server-query": "^4.1.1",
+    "@liamcottle/rustplus.js": "^2.2.0",
+    "valve-server-query": "^0.1.5"
   }
 }
