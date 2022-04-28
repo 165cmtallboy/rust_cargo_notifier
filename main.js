@@ -29,6 +29,7 @@ function initializeDB(){
         db2.run('create table if not exists shop(time, name, id, x, y, currencyId, costPerItem, itemId, amountInStock, quantity)')
     });
     db2.close();
+}
 
 async function sendMessage(body) {
     if (!NOSEND) {
