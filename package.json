@@ -12,6 +12,7 @@
   "dependencies": {
     "@fabricio-191/valve-server-query": "^4.1.1",
     "@liamcottle/rustplus.js": "^2.2.0",
+    "dotenv": "^16.0.0",
     "valve-server-query": "^0.1.5"
   }
 }
