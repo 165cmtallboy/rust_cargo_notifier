@@ -25,7 +25,6 @@ function initializeDB(){
         db.run('create table if not exists shop(time, name, id, x, y, currencyId, costPerItem, itemId, amountInStock, quantity)')
     });
     db.close();
-    
 }
 
 async function sendMessage(body) {
@@ -47,6 +46,7 @@ async function oneTerm() {
     // team
     s.getTeamInfo((message) => {
         // saving
+        console.log('team db')
         const db = new sqlite3.Database("out.db")
         db.serialize(() => {
         message.response.teamInfo.members
@@ -55,6 +55,7 @@ async function oneTerm() {
             });
         });
         db.close();
+        console.log('team cl')
     });
 
     
@@ -78,6 +79,7 @@ async function oneTerm() {
     }));
 
     
+    console.log('cg db')
     const db = new sqlite3.Database("out.db")
     db.serialize(() => {
     res.response.mapMarkers.markers.forEach( (data) => {
@@ -93,6 +95,7 @@ async function oneTerm() {
         })
     })
     db.close();
+    console.log('cg db cls')
 }
 
 s.on('connected', async () => {
