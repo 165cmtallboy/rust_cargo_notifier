@@ -58,7 +58,7 @@ async function oneTerm() {
 
     // cargo
     res.response.mapMarkers.markers.forEach(async (data) => {
-        console.log(data.type, data.x, data.y)
+        // console.log(data.type, data.x, data.y)
 
         if (data.type === 3) {
             console.log(data);
