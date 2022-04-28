@@ -22,6 +22,7 @@ function initializeDB(){
     const db = new sqlite3.Database("out.db")
     db.serialize(() => {
         db.run('create table if not exists member(time, name, x, y, spawnTime, deathTime)')
+        db.run('create table if not exists shop(time, name, id, x, y, currencyId, costPerItem, itemId, amountInStock, quantity)')
     });
     db.close();
     
@@ -62,8 +63,16 @@ async function oneTerm() {
         // console.log(data.type, data.x, data.y)
 
         if (data.type === 3) {
-            console.log(data);
-            console.log(data.sellOrders)
+            const db = new sqlite3.Database("out.db")
+            let shop_name = data.name;
+            let shop_id = data.id;
+            let x = data.x;
+            let y = data.y;
+            db.serialize(() => {
+                data.sellOrders.forEach((order) => {
+                    db.run('insert into shop values(?, ?, ?, ?, ?, ?, ?, ?, ?)', [new Date().getTime(), shop_name, shop_id, x, y, order.currencyId, order.costPerItem, order.itemId, order.amountInStock, order.quantity])
+                })
+            })
         }
         
         if (data.type === 5 && data.id !== current_cargo) {
