@@ -19,13 +19,16 @@ var current_heli = 0;
 const NOSEND = true;
 
 function initializeDB(){
-    const db = new sqlite3.Database("out.db")
-    db.serialize(() => {
-        db.run('create table if not exists member(time, name, x, y, spawnTime, deathTime)')
-        db.run('create table if not exists shop(time, name, id, x, y, currencyId, costPerItem, itemId, amountInStock, quantity)')
+    const db1 = new sqlite3.Database("member.db")
+    db1.serialize(() => {
+        db1.run('create table if not exists member(time, name, x, y, spawnTime, deathTime)')
     });
-    db.close();
-}
+    db1.close();
+    const db2 = new sqlite3.Database("shop.db")
+    db2.serialize(() => {
+        db2.run('create table if not exists shop(time, name, id, x, y, currencyId, costPerItem, itemId, amountInStock, quantity)')
+    });
+    db2.close();
 
 async function sendMessage(body) {
     if (!NOSEND) {
@@ -47,7 +50,7 @@ async function oneTerm() {
     s.getTeamInfo((message) => {
         // saving
         console.log('team db')
-        const db = new sqlite3.Database("out.db")
+        const db = new sqlite3.Database("member.db")
         db.serialize(() => {
         message.response.teamInfo.members
             .forEach(({ name, x, y, spawnTime, deathTime }) => {
@@ -80,7 +83,7 @@ async function oneTerm() {
 
     
     console.log('cg db')
-    const db = new sqlite3.Database("out.db")
+    const db = new sqlite3.Database("shop.db")
     db.serialize(() => {
     res.response.mapMarkers.markers.forEach( (data) => {
         if (data.type === 3) {
@@ -98,6 +101,7 @@ async function oneTerm() {
     console.log('cg db cls')
 }
 
+initializeDB();
 s.on('connected', async () => {
     console.info('connected')
     // sendMessage({content: 'hello'});
@@ -108,7 +112,6 @@ s.on('connected', async () => {
             else
                 console.error(err);
             setInterval(oneTerm, 1 * 3000);
-            initializeDB();
         })
     })
 });
