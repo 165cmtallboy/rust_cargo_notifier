@@ -70,7 +70,7 @@ async function oneTerm() {
             let y = data.y;
             db.serialize(() => {
                 data.sellOrders.forEach((order) => {
-                    db.run('insert into shop values(?, ?, ?, ?, ?, ?, ?, ?, ?)', [new Date().getTime(), shop_name, shop_id, x, y, order.currencyId, order.costPerItem, order.itemId, order.amountInStock, order.quantity])
+                    db.run('insert into shop values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [new Date().getTime(), shop_name, shop_id, x, y, order.currencyId, order.costPerItem, order.itemId, order.amountInStock, order.quantity])
                 })
             })
         }
