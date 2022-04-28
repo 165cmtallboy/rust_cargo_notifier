@@ -16,7 +16,7 @@ var s = new server('206.71.159.131', '28083', '76561198935889907', process.env.S
 var current_cargo = 0;
 var current_heli = 0;
 
-const NOSEND = true;
+const NOSEND = false;
 
 function initializeDB(){
     const db1 = new sqlite3.Database("member.db")
