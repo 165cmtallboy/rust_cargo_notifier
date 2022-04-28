@@ -4,6 +4,7 @@ import server from '@liamcottle/rustplus.js';
 import express from 'express';
 import dotenv from 'dotenv';
 import sqlite3 from 'sqlite3';
+import {generateCargo, generateHeli} from './cargo.js';
 
 dotenv.config();
 
@@ -69,7 +70,7 @@ async function oneTerm() {
             console.log("CARGO INCOMMING")
             current_cargo = data.id
             await sendMessage(
-                { content: 'CARGO INCOMMING!' }
+                { content: '', embeds: [ generateCargo() ] }
             )
         }
 
@@ -77,7 +78,7 @@ async function oneTerm() {
             console.log("CARGO INCOMMING")
             current_heli = data.id
             await sendMessage(
-                { content: 'HELI INCOMMING!' }
+                { content: '', embeds: [ generateHeli() ] }
             )
         }
     }));
