@@ -60,21 +60,6 @@ async function oneTerm() {
     
     // cargo
     await Promise.all(res.response.mapMarkers.markers.map(async (data) => {
-        // console.log(data.type, data.x, data.y)
-
-        if (data.type === 3) {
-            const db = new sqlite3.Database("out.db")
-            let shop_name = data.name;
-            let shop_id = data.id;
-            let x = data.x;
-            let y = data.y;
-            db.serialize(() => {
-                data.sellOrders.forEach((order) => {
-                    db.run('insert into shop values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [new Date().getTime(), shop_name, shop_id, x, y, order.currencyId, order.costPerItem, order.itemId, order.amountInStock, order.quantity])
-                })
-            })
-        }
-        
         if (data.type === 5 && data.id !== current_cargo) {
             console.log("CARGO INCOMMING")
             current_cargo = data.id
@@ -91,6 +76,23 @@ async function oneTerm() {
             )
         }
     }));
+
+    
+    const db = new sqlite3.Database("out.db")
+    db.serialize(() => {
+    res.response.mapMarkers.markers.forEach( (data) => {
+        if (data.type === 3) {
+            let shop_name = data.name;
+            let shop_id = data.id;
+            let x = data.x;
+            let y = data.y;
+                data.sellOrders.forEach((order) => {
+                    db.run('insert into shop values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [new Date().getTime(), shop_name, shop_id, x, y, order.currencyId, order.costPerItem, order.itemId, order.amountInStock, order.quantity])
+                })
+            }
+        })
+    })
+    db.close();
 }
 
 s.on('connected', async () => {
