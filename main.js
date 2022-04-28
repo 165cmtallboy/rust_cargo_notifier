@@ -56,8 +56,9 @@ async function oneTerm() {
         db.close();
     });
 
+    
     // cargo
-    res.response.mapMarkers.markers.forEach(async (data) => {
+    await Promise.all(res.response.mapMarkers.markers.map(async (data) => {
         // console.log(data.type, data.x, data.y)
 
         if (data.type === 3) {
@@ -80,7 +81,7 @@ async function oneTerm() {
                 { content: 'HELI INCOMMING!' }
             )
         }
-    })
+    }));
 }
 
 s.on('connected', async () => {
