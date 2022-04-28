@@ -104,7 +104,7 @@ s.on('connected', async () => {
                 console.log("Map wrote.")
             else
                 console.error(err);
-            setInterval(oneTerm, 1 * 1000);
+            setInterval(oneTerm, 1 * 3000);
             initializeDB();
         })
     })
