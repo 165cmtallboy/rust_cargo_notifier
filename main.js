@@ -4,7 +4,7 @@ import server from '@liamcottle/rustplus.js';
 import express from 'express';
 import dotenv from 'dotenv';
 import sqlite3 from 'sqlite3';
-import {generateCargo, generateHeli} from './cargo.js';
+import {generateCargo, generateHeli} from './embed.js';
 
 dotenv.config();
 
