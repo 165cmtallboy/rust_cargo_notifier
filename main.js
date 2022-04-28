@@ -75,7 +75,7 @@ async function oneTerm() {
 
         if (data.type === 8 && data.id !== current_heli) {
             console.log("CARGO INCOMMING")
-            current_cargo = data.id
+            current_heli = data.id
             await sendMessage(
                 { content: 'HELI INCOMMING!' }
             )
