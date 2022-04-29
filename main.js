@@ -108,6 +108,7 @@ s.on('connected', async () => {
     console.info('connected')
     // sendMessage({content: 'hello'});
     s.getMap((res) => {
+        console.log(res.response);
         fs.writeFile("public/map.jpg", res.response.map.jpgImage, (err) => {
             if (!err)
                 console.log("Map wrote.")
