@@ -52,14 +52,14 @@ async function oneTerm() {
     s.getTeamInfo((message) => {
         // saving
         console.log('team db')
-        const db = new sqlite3.Database("member.db")
-        db.serialize(() => {
-        message.response.teamInfo.members
-            .forEach(({ name, x, y, spawnTime, deathTime }) => {
-                db.run('insert into member values(?, ?, ?, ?, ?, ?)', [new Date().getTime(), name, x, y, spawnTime, deathTime])
-            });
-        });
-        db.close();
+        // const db = new sqlite3.Database("member.db")
+        // db.serialize(() => {
+        // message.response.teamInfo.members
+        //     .forEach(({ name, x, y, spawnTime, deathTime }) => {
+        //         db.run('insert into member values(?, ?, ?, ?, ?, ?)', [new Date().getTime(), name, x, y, spawnTime, deathTime])
+        //     });
+        // });
+        // db.close();
         console.log('team cl')
     });
 
@@ -85,21 +85,21 @@ async function oneTerm() {
 
     
     console.log('cg db')
-    const db = new sqlite3.Database("shop.db")
-    db.serialize(() => {
-    res.response.mapMarkers.markers.forEach( (data) => {
-        if (data.type === 3) {
-            let shop_name = data.name;
-            let shop_id = data.id;
-            let x = data.x;
-            let y = data.y;
-                data.sellOrders.forEach((order) => {
-                    db.run('insert into shop values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [new Date().getTime(), shop_name, shop_id, x, y, order.currencyId, order.costPerItem, order.itemId, order.amountInStock, order.quantity])
-                })
-            }
-        })
-    })
-    db.close();
+    // const db = new sqlite3.Database("shop.db")
+    // db.serialize(() => {
+    // res.response.mapMarkers.markers.forEach( (data) => {
+    //     if (data.type === 3) {
+    //         let shop_name = data.name;
+    //         let shop_id = data.id;
+    //         let x = data.x;
+    //         let y = data.y;
+    //             data.sellOrders.forEach((order) => {
+    //                 db.run('insert into shop values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [new Date().getTime(), shop_name, shop_id, x, y, order.currencyId, order.costPerItem, order.itemId, order.amountInStock, order.quantity])
+    //             })
+    //         }
+    //     })
+    // })
+    // db.close();
     console.log('cg db cls')
 }
 
